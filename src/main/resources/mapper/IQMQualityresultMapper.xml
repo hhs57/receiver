@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.province.receive.dao.IQMQualityresultMapper">
+  <resultMap id="BaseResultMap" type="com.province.receive.domain.IQMQualityresult">
+    <result column="VOICE_ID" jdbcType="VARCHAR" property="voiceId" />
+    <result column="CALL_TIME" jdbcType="DECIMAL" property="callTime" />
+    <result column="EFFECT_TIME" jdbcType="DECIMAL" property="effectTime" />
+    <result column="SLENCE_TIME" jdbcType="DECIMAL" property="slenceTime" />
+    <result column="SLENCE_NUM" jdbcType="DECIMAL" property="slenceNum" />
+    <result column="OVERLAP_TIME" jdbcType="DECIMAL" property="overlapTime" />
+    <result column="OVERLAP_NUM" jdbcType="DECIMAL" property="overlapNum" />
+    <result column="STANDARD_LIST" jdbcType="VARCHAR" property="standardList" />
+    <result column="RULE_LISR" jdbcType="VARCHAR" property="ruleLisr" />
+    <result column="MISTAKE_LEVEL" jdbcType="VARCHAR" property="mistakeLevel" />
+    <result column="IS_COMPLAINT" jdbcType="VARCHAR" property="isComplaint" />
+    <result column="IS_REPEAT_CALL" jdbcType="VARCHAR" property="isRepeatCall" />
+    <result column="SATISFACTION" jdbcType="VARCHAR" property="satisfaction" />
+    <result column="SENSE_NUM" jdbcType="DECIMAL" property="senseNum" />
+    <result column="BAN_NUM" jdbcType="DECIMAL" property="banNum" />
+    <result column="RECOMMEND_ID" jdbcType="VARCHAR" property="recommendId" />
+    <result column="RECOMMEND_RANK" jdbcType="VARCHAR" property="recommendRank" />
+    <result column="LONG_SLENCE_TIME" jdbcType="DECIMAL" property="longSlenceTime" />
+    <result column="ACCURACY_EVALUATION" jdbcType="VARCHAR" property="accuracyEvaluation" />
+    <result column="BUSI_PROFICIENCY" jdbcType="VARCHAR" property="busiProficiency" />
+    <result column="APP_CONTENT_ACCRUACY" jdbcType="VARCHAR" property="appContentAccruacy" />
+    <result column="CUSTOMER_EMOTION" jdbcType="VARCHAR" property="customerEmotion" />
+    <result column="AGENT_EMOTION" jdbcType="VARCHAR" property="agentEmotion" />
+    <result column="AGENT_MIN_SPEED" jdbcType="DECIMAL" property="agentMinSpeed" />
+    <result column="AGENT_MAX_SPEED" jdbcType="DECIMAL" property="agentMaxSpeed" />
+    <result column="ISCOMPLAINT_BYPERSON" jdbcType="VARCHAR" property="iscomplaintByperson" />
+    <result column="ISREPEATCALL_BYPERSON" jdbcType="VARCHAR" property="isrepeatcallByperson" />
+  </resultMap>
+  <insert id="insert" parameterType="com.province.receive.domain.IQMQualityresult">
+    insert into IQM_QUALITY_RESULT (VOICE_ID, CALL_TIME, EFFECT_TIME, 
+      SLENCE_TIME, SLENCE_NUM, OVERLAP_TIME, 
+      OVERLAP_NUM, STANDARD_LIST, RULE_LISR, 
+      MISTAKE_LEVEL, IS_COMPLAINT, IS_REPEAT_CALL, 
+      SATISFACTION, SENSE_NUM, BAN_NUM, 
+      RECOMMEND_ID, RECOMMEND_RANK, LONG_SLENCE_TIME, 
+      ACCURACY_EVALUATION, BUSI_PROFICIENCY, APP_CONTENT_ACCRUACY, 
+      CUSTOMER_EMOTION, AGENT_EMOTION, AGENT_MIN_SPEED, 
+      AGENT_MAX_SPEED, ISCOMPLAINT_BYPERSON, ISREPEATCALL_BYPERSON
+      )
+    values (#{voiceId,jdbcType=VARCHAR}, #{callTime,jdbcType=DECIMAL}, #{effectTime,jdbcType=DECIMAL}, 
+      #{slenceTime,jdbcType=DECIMAL}, #{slenceNum,jdbcType=DECIMAL}, #{overlapTime,jdbcType=DECIMAL}, 
+      #{overlapNum,jdbcType=DECIMAL}, #{standardList,jdbcType=VARCHAR}, #{ruleLisr,jdbcType=VARCHAR}, 
+      #{mistakeLevel,jdbcType=VARCHAR}, #{isComplaint,jdbcType=VARCHAR}, #{isRepeatCall,jdbcType=VARCHAR}, 
+      #{satisfaction,jdbcType=VARCHAR}, #{senseNum,jdbcType=DECIMAL}, #{banNum,jdbcType=DECIMAL}, 
+      #{recommendId,jdbcType=VARCHAR}, #{recommendRank,jdbcType=VARCHAR}, #{longSlenceTime,jdbcType=DECIMAL}, 
+      #{accuracyEvaluation,jdbcType=VARCHAR}, #{busiProficiency,jdbcType=VARCHAR}, #{appContentAccruacy,jdbcType=VARCHAR}, 
+      #{customerEmotion,jdbcType=VARCHAR}, #{agentEmotion,jdbcType=VARCHAR}, #{agentMinSpeed,jdbcType=DECIMAL}, 
+      #{agentMaxSpeed,jdbcType=DECIMAL}, #{iscomplaintByperson,jdbcType=VARCHAR}, #{isrepeatcallByperson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.province.receive.domain.IQMQualityresult">
+    insert into IQM_QUALITY_RESULT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="voiceId != null">
+        VOICE_ID,
+      </if>
+      <if test="callTime != null">
+        CALL_TIME,
+      </if>
+      <if test="effectTime != null">
+        EFFECT_TIME,
+      </if>
+      <if test="slenceTime != null">
+        SLENCE_TIME,
+      </if>
+      <if test="slenceNum != null">
+        SLENCE_NUM,
+      </if>
+      <if test="overlapTime != null">
+        OVERLAP_TIME,
+      </if>
+      <if test="overlapNum != null">
+        OVERLAP_NUM,
+      </if>
+      <if test="standardList != null">
+        STANDARD_LIST,
+      </if>
+      <if test="ruleLisr != null">
+        RULE_LISR,
+      </if>
+      <if test="mistakeLevel != null">
+        MISTAKE_LEVEL,
+      </if>
+      <if test="isComplaint != null">
+        IS_COMPLAINT,
+      </if>
+      <if test="isRepeatCall != null">
+        IS_REPEAT_CALL,
+      </if>
+      <if test="satisfaction != null">
+        SATISFACTION,
+      </if>
+      <if test="senseNum != null">
+        SENSE_NUM,
+      </if>
+      <if test="banNum != null">
+        BAN_NUM,
+      </if>
+      <if test="recommendId != null">
+        RECOMMEND_ID,
+      </if>
+      <if test="recommendRank != null">
+        RECOMMEND_RANK,
+      </if>
+      <if test="longSlenceTime != null">
+        LONG_SLENCE_TIME,
+      </if>
+      <if test="accuracyEvaluation != null">
+        ACCURACY_EVALUATION,
+      </if>
+      <if test="busiProficiency != null">
+        BUSI_PROFICIENCY,
+      </if>
+      <if test="appContentAccruacy != null">
+        APP_CONTENT_ACCRUACY,
+      </if>
+      <if test="customerEmotion != null">
+        CUSTOMER_EMOTION,
+      </if>
+      <if test="agentEmotion != null">
+        AGENT_EMOTION,
+      </if>
+      <if test="agentMinSpeed != null">
+        AGENT_MIN_SPEED,
+      </if>
+      <if test="agentMaxSpeed != null">
+        AGENT_MAX_SPEED,
+      </if>
+      <if test="iscomplaintByperson != null">
+        ISCOMPLAINT_BYPERSON,
+      </if>
+      <if test="isrepeatcallByperson != null">
+        ISREPEATCALL_BYPERSON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="voiceId != null">
+        #{voiceId,jdbcType=VARCHAR},
+      </if>
+      <if test="callTime != null">
+        #{callTime,jdbcType=DECIMAL},
+      </if>
+      <if test="effectTime != null">
+        #{effectTime,jdbcType=DECIMAL},
+      </if>
+      <if test="slenceTime != null">
+        #{slenceTime,jdbcType=DECIMAL},
+      </if>
+      <if test="slenceNum != null">
+        #{slenceNum,jdbcType=DECIMAL},
+      </if>
+      <if test="overlapTime != null">
+        #{overlapTime,jdbcType=DECIMAL},
+      </if>
+      <if test="overlapNum != null">
+        #{overlapNum,jdbcType=DECIMAL},
+      </if>
+      <if test="standardList != null">
+        #{standardList,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleLisr != null">
+        #{ruleLisr,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeLevel != null">
+        #{mistakeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="isComplaint != null">
+        #{isComplaint,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepeatCall != null">
+        #{isRepeatCall,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="senseNum != null">
+        #{senseNum,jdbcType=DECIMAL},
+      </if>
+      <if test="banNum != null">
+        #{banNum,jdbcType=DECIMAL},
+      </if>
+      <if test="recommendId != null">
+        #{recommendId,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendRank != null">
+        #{recommendRank,jdbcType=VARCHAR},
+      </if>
+      <if test="longSlenceTime != null">
+        #{longSlenceTime,jdbcType=DECIMAL},
+      </if>
+      <if test="accuracyEvaluation != null">
+        #{accuracyEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="busiProficiency != null">
+        #{busiProficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="appContentAccruacy != null">
+        #{appContentAccruacy,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEmotion != null">
+        #{customerEmotion,jdbcType=VARCHAR},
+      </if>
+      <if test="agentEmotion != null">
+        #{agentEmotion,jdbcType=VARCHAR},
+      </if>
+      <if test="agentMinSpeed != null">
+        #{agentMinSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="agentMaxSpeed != null">
+        #{agentMaxSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="iscomplaintByperson != null">
+        #{iscomplaintByperson,jdbcType=VARCHAR},
+      </if>
+      <if test="isrepeatcallByperson != null">
+        #{isrepeatcallByperson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

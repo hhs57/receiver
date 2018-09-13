@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.province.receive.dao.IQMOrdervoiceinfoMapper">
+  <resultMap id="BaseResultMap" type="com.province.receive.domain.IQMOrdervoiceinfo">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="VOICE_PHONE" jdbcType="VARCHAR" property="voicePhone" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.province.receive.domain.IQMOrdervoiceinfo">
+    <selectKey resultType="String"  keyProperty="id" order="BEFORE">
+      select sys_guid() from dual
+    </selectKey>
+    insert into IQM_ORDER_VOICE_INFO (ID, VOICE_PHONE, START_TIME, 
+      END_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{voicePhone,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.province.receive.domain.IQMOrdervoiceinfo">
+    insert into IQM_ORDER_VOICE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="voicePhone != null">
+        VOICE_PHONE,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="voicePhone != null">
+        #{voicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.province.receive.dao.IQMComplaintMapper">
+  <resultMap id="BaseResultMap" type="com.province.receive.domain.IQMComplaint">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="VOICE_NO" jdbcType="VARCHAR" property="voiceNo" />
+    <result column="APP_NO" jdbcType="VARCHAR" property="appNo" />
+    <result column="CALL_PHONE" jdbcType="VARCHAR" property="callPhone" />
+    <result column="INTERACTIVE_NUM" jdbcType="DECIMAL" property="interactiveNum" />
+    <result column="CALL_TIME" jdbcType="DECIMAL" property="callTime" />
+    <result column="BUSI_TYPE_CODE" jdbcType="VARCHAR" property="busiTypeCode" />
+    <result column="CALL_REASON_CODE" jdbcType="DECIMAL" property="callReasonCode" />
+    <result column="ORG_NO" jdbcType="VARCHAR" property="orgNo" />
+    <result column="CSR_DEPT" jdbcType="VARCHAR" property="csrDept" />
+    <result column="REQ_BEGIN_DATE" jdbcType="TIMESTAMP" property="reqBeginDate" />
+    <result column="COMPLAINT_CLASSIFY_CODE" jdbcType="VARCHAR" property="complaintClassifyCode" />
+    <result column="PRO_ORG_NO" jdbcType="VARCHAR" property="proOrgNo" />
+    <result column="ISCOMPLAINT_BYPERSON" jdbcType="VARCHAR" property="iscomplaintByperson" />
+    <result column="HANDLE_TIME" jdbcType="TIMESTAMP" property="handleTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, VOICE_NO, APP_NO, CALL_PHONE, INTERACTIVE_NUM, CALL_TIME, BUSI_TYPE_CODE, CALL_REASON_CODE, 
+    ORG_NO, CSR_DEPT, REQ_BEGIN_DATE, COMPLAINT_CLASSIFY_CODE, PRO_ORG_NO, ISCOMPLAINT_BYPERSON, 
+    HANDLE_TIME
+  </sql>
+
+  <insert id="insert" parameterType="com.province.receive.domain.IQMComplaint">
+    <selectKey resultType="String"  keyProperty="id" order="BEFORE">
+      select sys_guid() from dual
+    </selectKey>
+    insert into IQM_COMPLAINT (ID, VOICE_NO, APP_NO, 
+      CALL_PHONE, INTERACTIVE_NUM, CALL_TIME, 
+      BUSI_TYPE_CODE, CALL_REASON_CODE, ORG_NO, 
+      CSR_DEPT, REQ_BEGIN_DATE, COMPLAINT_CLASSIFY_CODE, 
+      PRO_ORG_NO, ISCOMPLAINT_BYPERSON, HANDLE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{voiceNo,jdbcType=VARCHAR}, #{appNo,jdbcType=VARCHAR}, 
+      #{callPhone,jdbcType=VARCHAR}, #{interactiveNum,jdbcType=DECIMAL}, #{callTime,jdbcType=DECIMAL}, 
+      #{busiTypeCode,jdbcType=VARCHAR}, #{callReasonCode,jdbcType=DECIMAL}, #{orgNo,jdbcType=VARCHAR}, 
+      #{csrDept,jdbcType=VARCHAR}, #{reqBeginDate,jdbcType=TIMESTAMP}, #{complaintClassifyCode,jdbcType=VARCHAR}, 
+      #{proOrgNo,jdbcType=VARCHAR}, #{iscomplaintByperson,jdbcType=VARCHAR}, #{handleTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.province.receive.domain.IQMComplaint">
+    insert into IQM_COMPLAINT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="voiceNo != null">
+        VOICE_NO,
+      </if>
+      <if test="appNo != null">
+        APP_NO,
+      </if>
+      <if test="callPhone != null">
+        CALL_PHONE,
+      </if>
+      <if test="interactiveNum != null">
+        INTERACTIVE_NUM,
+      </if>
+      <if test="callTime != null">
+        CALL_TIME,
+      </if>
+      <if test="busiTypeCode != null">
+        BUSI_TYPE_CODE,
+      </if>
+      <if test="callReasonCode != null">
+        CALL_REASON_CODE,
+      </if>
+      <if test="orgNo != null">
+        ORG_NO,
+      </if>
+      <if test="csrDept != null">
+        CSR_DEPT,
+      </if>
+      <if test="reqBeginDate != null">
+        REQ_BEGIN_DATE,
+      </if>
+      <if test="complaintClassifyCode != null">
+        COMPLAINT_CLASSIFY_CODE,
+      </if>
+      <if test="proOrgNo != null">
+        PRO_ORG_NO,
+      </if>
+      <if test="iscomplaintByperson != null">
+        ISCOMPLAINT_BYPERSON,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceNo != null">
+        #{voiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appNo != null">
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="callPhone != null">
+        #{callPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="interactiveNum != null">
+        #{interactiveNum,jdbcType=DECIMAL},
+      </if>
+      <if test="callTime != null">
+        #{callTime,jdbcType=DECIMAL},
+      </if>
+      <if test="busiTypeCode != null">
+        #{busiTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="callReasonCode != null">
+        #{callReasonCode,jdbcType=DECIMAL},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="csrDept != null">
+        #{csrDept,jdbcType=VARCHAR},
+      </if>
+      <if test="reqBeginDate != null">
+        #{reqBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="complaintClassifyCode != null">
+        #{complaintClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proOrgNo != null">
+        #{proOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="iscomplaintByperson != null">
+        #{iscomplaintByperson,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+
+
+
+
+
+
+
+</mapper>

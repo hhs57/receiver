@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.province.receive.dao.IQMOrderinfoMapper">
+  <resultMap id="BaseResultMap" type="com.province.receive.domain.IQMOrderinfo">
+    <result column="APP_NO" jdbcType="VARCHAR" property="appNo" />
+    <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
+    <result column="CALL_TIME" jdbcType="DECIMAL" property="callTime" />
+    <result column="HANDLE_TIME" jdbcType="TIMESTAMP" property="handleTime" />
+    <result column="CONNECT_TIME" jdbcType="TIMESTAMP" property="connectTime" />
+    <result column="BUSI_TYPE_CODE" jdbcType="VARCHAR" property="busiTypeCode" />
+    <result column="RETVISIT_FLAG" jdbcType="VARCHAR" property="retvisitFlag" />
+    <result column="HANDLE_FINISH_TIME" jdbcType="TIMESTAMP" property="handleFinishTime" />
+    <result column="HANDLE_RESULT" jdbcType="VARCHAR" property="handleResult" />
+    <result column="IMPORTANT_CUST_LEVEL" jdbcType="VARCHAR" property="importantCustLevel" />
+    <result column="CSR_NUMBER" jdbcType="VARCHAR" property="csrNumber" />
+    <result column="CSR_GROUP" jdbcType="VARCHAR" property="csrGroup" />
+    <result column="CSR_DEPT" jdbcType="VARCHAR" property="csrDept" />
+    <result column="ORG_NO" jdbcType="VARCHAR" property="orgNo" />
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+    <result column="COUNTY_CODE" jdbcType="VARCHAR" property="countyCode" />
+    <result column="URBAN_RURAL_FLAG" jdbcType="VARCHAR" property="urbanRuralFlag" />
+    <result column="CENTER_CODE" jdbcType="VARCHAR" property="centerCode" />
+    <result column="QUALITY_LEVEL" jdbcType="VARCHAR" property="qualityLevel" />
+    <result column="PRO_ORG_NO" jdbcType="VARCHAR" property="proOrgNo" />
+  </resultMap>
+  <insert id="insert" parameterType="com.province.receive.domain.IQMOrderinfo">
+    insert into IQM_ORDER_INFO (APP_NO, USER_PHONE, CALL_TIME, 
+      HANDLE_TIME, CONNECT_TIME, BUSI_TYPE_CODE, 
+      RETVISIT_FLAG, HANDLE_FINISH_TIME, HANDLE_RESULT, 
+      IMPORTANT_CUST_LEVEL, CSR_NUMBER, CSR_GROUP, 
+      CSR_DEPT, ORG_NO, CITY_CODE, 
+      COUNTY_CODE, URBAN_RURAL_FLAG, CENTER_CODE, 
+      QUALITY_LEVEL, PRO_ORG_NO)
+    values (#{appNo,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{callTime,jdbcType=DECIMAL}, 
+      #{handleTime,jdbcType=TIMESTAMP}, #{connectTime,jdbcType=TIMESTAMP}, #{busiTypeCode,jdbcType=VARCHAR}, 
+      #{retvisitFlag,jdbcType=VARCHAR}, #{handleFinishTime,jdbcType=TIMESTAMP}, #{handleResult,jdbcType=VARCHAR}, 
+      #{importantCustLevel,jdbcType=VARCHAR}, #{csrNumber,jdbcType=VARCHAR}, #{csrGroup,jdbcType=VARCHAR}, 
+      #{csrDept,jdbcType=VARCHAR}, #{orgNo,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR}, #{urbanRuralFlag,jdbcType=VARCHAR}, #{centerCode,jdbcType=VARCHAR}, 
+      #{qualityLevel,jdbcType=VARCHAR}, #{proOrgNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.province.receive.domain.IQMOrderinfo">
+    insert into IQM_ORDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appNo != null">
+        APP_NO,
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE,
+      </if>
+      <if test="callTime != null">
+        CALL_TIME,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+      <if test="connectTime != null">
+        CONNECT_TIME,
+      </if>
+      <if test="busiTypeCode != null">
+        BUSI_TYPE_CODE,
+      </if>
+      <if test="retvisitFlag != null">
+        RETVISIT_FLAG,
+      </if>
+      <if test="handleFinishTime != null">
+        HANDLE_FINISH_TIME,
+      </if>
+      <if test="handleResult != null">
+        HANDLE_RESULT,
+      </if>
+      <if test="importantCustLevel != null">
+        IMPORTANT_CUST_LEVEL,
+      </if>
+      <if test="csrNumber != null">
+        CSR_NUMBER,
+      </if>
+      <if test="csrGroup != null">
+        CSR_GROUP,
+      </if>
+      <if test="csrDept != null">
+        CSR_DEPT,
+      </if>
+      <if test="orgNo != null">
+        ORG_NO,
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE,
+      </if>
+      <if test="countyCode != null">
+        COUNTY_CODE,
+      </if>
+      <if test="urbanRuralFlag != null">
+        URBAN_RURAL_FLAG,
+      </if>
+      <if test="centerCode != null">
+        CENTER_CODE,
+      </if>
+      <if test="qualityLevel != null">
+        QUALITY_LEVEL,
+      </if>
+      <if test="proOrgNo != null">
+        PRO_ORG_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appNo != null">
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="callTime != null">
+        #{callTime,jdbcType=DECIMAL},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="connectTime != null">
+        #{connectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="busiTypeCode != null">
+        #{busiTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="retvisitFlag != null">
+        #{retvisitFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="handleFinishTime != null">
+        #{handleFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleResult != null">
+        #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="importantCustLevel != null">
+        #{importantCustLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="csrNumber != null">
+        #{csrNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="csrGroup != null">
+        #{csrGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="csrDept != null">
+        #{csrDept,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="urbanRuralFlag != null">
+        #{urbanRuralFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="centerCode != null">
+        #{centerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityLevel != null">
+        #{qualityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="proOrgNo != null">
+        #{proOrgNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.province.receive.dao.IQMStatisticalanalysisMapper">
+  <resultMap id="BaseResultMap" type="com.province.receive.domain.IQMStatisticalanalysis">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="VOICE_NO" jdbcType="VARCHAR" property="voiceNo" />
+    <result column="CALL_PHONE" jdbcType="VARCHAR" property="callPhone" />
+    <result column="APP_NO" jdbcType="VARCHAR" property="appNo" />
+    <result column="REQ_BEGIN_DATE" jdbcType="TIMESTAMP" property="reqBeginDate" />
+    <result column="CONNECT_TIME" jdbcType="TIMESTAMP" property="connectTime" />
+    <result column="BUSI_TYPE_CODE" jdbcType="VARCHAR" property="busiTypeCode" />
+    <result column="INTERACTIVE_NUM" jdbcType="DECIMAL" property="interactiveNum" />
+    <result column="EFFECTIVE_TIME" jdbcType="DECIMAL" property="effectiveTime" />
+    <result column="INVALID_TIME" jdbcType="DECIMAL" property="invalidTime" />
+    <result column="SILENC_NUM" jdbcType="DECIMAL" property="silencNum" />
+    <result column="SILENCE_TIME" jdbcType="DECIMAL" property="silenceTime" />
+    <result column="OVERLAP_NUM" jdbcType="DECIMAL" property="overlapNum" />
+    <result column="OVERLAP_TIME" jdbcType="DECIMAL" property="overlapTime" />
+    <result column="CALL_REASON_CODE" jdbcType="VARCHAR" property="callReasonCode" />
+    <result column="MISTAKE_LEVEL" jdbcType="VARCHAR" property="mistakeLevel" />
+    <result column="IS_COMPLAINT" jdbcType="VARCHAR" property="isComplaint" />
+    <result column="IS_REPEAT" jdbcType="VARCHAR" property="isRepeat" />
+    <result column="ORG_NO" jdbcType="VARCHAR" property="orgNo" />
+    <result column="CSR_DEPT" jdbcType="VARCHAR" property="csrDept" />
+    <result column="CENTER" jdbcType="VARCHAR" property="center" />
+    <result column="RECOMMEND_RANK" jdbcType="VARCHAR" property="recommendRank" />
+    <result column="PRO_ORG_NO" jdbcType="VARCHAR" property="proOrgNo" />
+    <result column="SATISFACTION" jdbcType="VARCHAR" property="satisfaction" />
+    <result column="REQ_DIRECTION" jdbcType="VARCHAR" property="reqDirection" />
+    <result column="MANUAL_SATISFACTION" jdbcType="VARCHAR" property="manualSatisfaction" />
+  </resultMap>
+  <insert id="insert" parameterType="com.province.receive.domain.IQMStatisticalanalysis">
+    <selectKey resultType="String"  keyProperty="id" order="BEFORE">
+      select sys_guid() from dual
+    </selectKey>
+    insert into IQM_STATISTICAL_ANALYSIS (ID, VOICE_NO, CALL_PHONE, 
+      APP_NO, REQ_BEGIN_DATE, CONNECT_TIME, 
+      BUSI_TYPE_CODE, INTERACTIVE_NUM, EFFECTIVE_TIME, 
+      INVALID_TIME, SILENC_NUM, SILENCE_TIME, 
+      OVERLAP_NUM, OVERLAP_TIME, CALL_REASON_CODE, 
+      MISTAKE_LEVEL, IS_COMPLAINT, IS_REPEAT, 
+      ORG_NO, CSR_DEPT, CENTER, 
+      RECOMMEND_RANK, PRO_ORG_NO, SATISFACTION, 
+      REQ_DIRECTION, MANUAL_SATISFACTION)
+    values (#{id,jdbcType=VARCHAR}, #{voiceNo,jdbcType=VARCHAR}, #{callPhone,jdbcType=VARCHAR}, 
+      #{appNo,jdbcType=VARCHAR}, #{reqBeginDate,jdbcType=TIMESTAMP}, #{connectTime,jdbcType=TIMESTAMP}, 
+      #{busiTypeCode,jdbcType=VARCHAR}, #{interactiveNum,jdbcType=DECIMAL}, #{effectiveTime,jdbcType=DECIMAL}, 
+      #{invalidTime,jdbcType=DECIMAL}, #{silencNum,jdbcType=DECIMAL}, #{silenceTime,jdbcType=DECIMAL}, 
+      #{overlapNum,jdbcType=DECIMAL}, #{overlapTime,jdbcType=DECIMAL}, #{callReasonCode,jdbcType=VARCHAR}, 
+      #{mistakeLevel,jdbcType=VARCHAR}, #{isComplaint,jdbcType=VARCHAR}, #{isRepeat,jdbcType=VARCHAR}, 
+      #{orgNo,jdbcType=VARCHAR}, #{csrDept,jdbcType=VARCHAR}, #{center,jdbcType=VARCHAR}, 
+      #{recommendRank,jdbcType=VARCHAR}, #{proOrgNo,jdbcType=VARCHAR}, #{satisfaction,jdbcType=VARCHAR}, 
+      #{reqDirection,jdbcType=VARCHAR}, #{manualSatisfaction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.province.receive.domain.IQMStatisticalanalysis">
+    insert into IQM_STATISTICAL_ANALYSIS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="voiceNo != null">
+        VOICE_NO,
+      </if>
+      <if test="callPhone != null">
+        CALL_PHONE,
+      </if>
+      <if test="appNo != null">
+        APP_NO,
+      </if>
+      <if test="reqBeginDate != null">
+        REQ_BEGIN_DATE,
+      </if>
+      <if test="connectTime != null">
+        CONNECT_TIME,
+      </if>
+      <if test="busiTypeCode != null">
+        BUSI_TYPE_CODE,
+      </if>
+      <if test="interactiveNum != null">
+        INTERACTIVE_NUM,
+      </if>
+      <if test="effectiveTime != null">
+        EFFECTIVE_TIME,
+      </if>
+      <if test="invalidTime != null">
+        INVALID_TIME,
+      </if>
+      <if test="silencNum != null">
+        SILENC_NUM,
+      </if>
+      <if test="silenceTime != null">
+        SILENCE_TIME,
+      </if>
+      <if test="overlapNum != null">
+        OVERLAP_NUM,
+      </if>
+      <if test="overlapTime != null">
+        OVERLAP_TIME,
+      </if>
+      <if test="callReasonCode != null">
+        CALL_REASON_CODE,
+      </if>
+      <if test="mistakeLevel != null">
+        MISTAKE_LEVEL,
+      </if>
+      <if test="isComplaint != null">
+        IS_COMPLAINT,
+      </if>
+      <if test="isRepeat != null">
+        IS_REPEAT,
+      </if>
+      <if test="orgNo != null">
+        ORG_NO,
+      </if>
+      <if test="csrDept != null">
+        CSR_DEPT,
+      </if>
+      <if test="center != null">
+        CENTER,
+      </if>
+      <if test="recommendRank != null">
+        RECOMMEND_RANK,
+      </if>
+      <if test="proOrgNo != null">
+        PRO_ORG_NO,
+      </if>
+      <if test="satisfaction != null">
+        SATISFACTION,
+      </if>
+      <if test="reqDirection != null">
+        REQ_DIRECTION,
+      </if>
+      <if test="manualSatisfaction != null">
+        MANUAL_SATISFACTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceNo != null">
+        #{voiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="callPhone != null">
+        #{callPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="appNo != null">
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reqBeginDate != null">
+        #{reqBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="connectTime != null">
+        #{connectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="busiTypeCode != null">
+        #{busiTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="interactiveNum != null">
+        #{interactiveNum,jdbcType=DECIMAL},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=DECIMAL},
+      </if>
+      <if test="invalidTime != null">
+        #{invalidTime,jdbcType=DECIMAL},
+      </if>
+      <if test="silencNum != null">
+        #{silencNum,jdbcType=DECIMAL},
+      </if>
+      <if test="silenceTime != null">
+        #{silenceTime,jdbcType=DECIMAL},
+      </if>
+      <if test="overlapNum != null">
+        #{overlapNum,jdbcType=DECIMAL},
+      </if>
+      <if test="overlapTime != null">
+        #{overlapTime,jdbcType=DECIMAL},
+      </if>
+      <if test="callReasonCode != null">
+        #{callReasonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeLevel != null">
+        #{mistakeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="isComplaint != null">
+        #{isComplaint,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepeat != null">
+        #{isRepeat,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null">
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="csrDept != null">
+        #{csrDept,jdbcType=VARCHAR},
+      </if>
+      <if test="center != null">
+        #{center,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendRank != null">
+        #{recommendRank,jdbcType=VARCHAR},
+      </if>
+      <if test="proOrgNo != null">
+        #{proOrgNo,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="reqDirection != null">
+        #{reqDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="manualSatisfaction != null">
+        #{manualSatisfaction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+
+</mapper>
