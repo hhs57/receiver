@@ -1,6 +1,9 @@
 package com.province.receive.common.utils;
 
 import com.province.receive.common.constant.RsaConstant;
+import com.province.receive.config.EncryptConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
 import java.security.*;
@@ -30,7 +33,10 @@ import javax.crypto.Cipher;
  * @date 2012-4-26
  * @version 1.0
  */
+@Component
 public class EncryptionUtil {
+
+    public static String key;
 
     /**
      * 加密算法RSA
@@ -329,6 +335,11 @@ public class EncryptionUtil {
             throws Exception {
         Key key = (Key) keyMap.get(RsaConstant.PUBLIC);
         return Base64Utils.encode(key.getEncoded());
+    }
+
+    @Autowired
+    public void setEncryptconfig(EncryptConfig encryptconfig) {
+        EncryptionUtil.key= encryptconfig.getKeyword();
     }
 
 }

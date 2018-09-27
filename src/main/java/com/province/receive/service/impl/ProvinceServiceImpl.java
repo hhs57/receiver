@@ -3,16 +3,23 @@ package com.province.receive.service.impl;
 import com.google.gson.Gson;
 import com.province.receive.common.ResultModel;
 import com.province.receive.common.utils.Base64Utils;
+import com.province.receive.common.utils.CommonUtils;
 import com.province.receive.common.utils.ElasticSearchUtil;
 import com.province.receive.common.utils.EncryptionUtil;
+import com.province.receive.config.EncryptConfig;
 import com.province.receive.domain.*;
 import com.province.receive.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.net.UnknownHostException;
@@ -23,6 +30,7 @@ import java.util.Map;
 
 @Slf4j
 @Component
+@ConfigurationProperties(prefix = "encryption")
 public class ProvinceServiceImpl implements IProvinceService {
     private final Logger logger = LoggerFactory.getLogger(ProvinceServiceImpl.class);
     @Resource
@@ -40,12 +48,16 @@ public class ProvinceServiceImpl implements IProvinceService {
     @Resource
     private IIqmstatisticalanalysisService iiqmstatisticalanalysisservice;
 
+    @Resource
+    EncryptConfig encryptconfig;
+
     static Map<String, Object> keyPairMap;
 
-    static{
-            keyPairMap = EncryptionUtil.genKeyPair("sap123456");
-    }
 
+    static{
+//            keyPairMap = EncryptionUtil.genKeyPair("sap123456");
+            keyPairMap = EncryptionUtil.genKeyPair(EncryptionUtil.key);
+    }
 
 
     @Override
@@ -53,11 +65,12 @@ public class ProvinceServiceImpl implements IProvinceService {
 
         dataList.stream().forEach(data -> {
             try {
-                System.out.println(data);
+//                System.out.println(data);
+//                System.out.println("编码格式->"+ CommonUtils.getEncoding(data));
                 //此处为测试接口，直接解密，正确做法为先将data放入缓存中，消息中间件或者redis或者存入数据库，再另执行定时任务取出数据进行解密
                 byte[] jsonByte = EncryptionUtil.decryptByPrivateKey(Base64Utils.decode(data), EncryptionUtil.getPrivateKey(keyPairMap));
-                String json = new String(jsonByte);
-                System.out.println(json);
+                String json = new String(jsonByte,"UTF-8");
+                System.out.println("receiveData中->"+json);
                 saveOracleData(json);
                 saveElasticSearchData(json);
             } catch (Exception e) {

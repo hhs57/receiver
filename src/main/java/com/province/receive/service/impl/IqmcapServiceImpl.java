@@ -1,6 +1,5 @@
 package com.province.receive.service.impl;
 
-import com.province.receive.controller.TestController;
 import com.province.receive.dao.IQMCapMapper;
 import com.province.receive.domain.IQMCap;
 import com.province.receive.service.IIqmcapService;
@@ -18,7 +17,7 @@ import javax.annotation.Resource;
  */
 @Service(value = "iqmcapService")
 public class IqmcapServiceImpl implements IIqmcapService {
-    private final Logger logger = LoggerFactory.getLogger(TestController.class);
+    private final Logger logger = LoggerFactory.getLogger(IqmcomplaintServiceImpl.class);
     @Resource
     private IQMCapMapper iqmCapDao;
     @Override

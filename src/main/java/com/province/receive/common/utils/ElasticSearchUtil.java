@@ -1,42 +1,55 @@
 package com.province.receive.common.utils;
 
+import com.province.receive.config.EsConfig;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
  * @author hanhongshuang
- * @ClassName: ElasticsearchTest1
+ * @ClassName: ElasticSearchUtil
  * @Description:
  * @date 2018年8月9日
  */
+@Component
 public class ElasticSearchUtil {
 
     private static Logger logger = LoggerFactory.getLogger(ElasticSearchUtil.class);
 
-    private final static String HOST = "192.168.1.23";
-    /**
-     * http请求的端口是9200，客户端是9300
-     */
-    private final static int PORT = 9300;
+    @Autowired
+    EsConfig esconfig;
+
+    public static ElasticSearchUtil elasticsearchutil;
+
+    @PostConstruct
+    public void init() {
+        elasticsearchutil = this;
+        elasticsearchutil.esconfig = this.esconfig;
+    }
 
     private static TransportClient client;
 
     private static TransportClient getIstance() throws UnknownHostException {
         if (client == null) {
-           //同步代码块（对象未初始化时，使用同步代码块，保证多线程访问时对象在第一次创建后，不再重复被创建）
+            //同步代码块（对象未初始化时，使用同步代码块，保证多线程访问时对象在第一次创建后，不再重复被创建）
             synchronized (TransportClient.class) {
                 if (client == null) {
-                    client = new PreBuiltTransportClient(Settings.EMPTY).addTransportAddresses(
-                            new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT));
+                    Settings settings = Settings.builder()
+                            .put("cluster.name", elasticsearchutil.esconfig.getClustername())
+                            .put("client.transport.sniff", true)
+                            .build();
+                    client = TransportClient.builder().settings(settings).build()
+                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(elasticsearchutil.esconfig.getHost()), elasticsearchutil.esconfig.getPort()));
                 }
             }
         }
@@ -44,20 +57,6 @@ public class ElasticSearchUtil {
         return client;
     }
 
-    /**
-     * 获取客户端连接信息
-     *
-     * @return void
-     * @throws UnknownHostException
-     * @Title: getConnect
-     * @author hanhongshuang
-     * @date 2018年8月9日
-     */
-//    public void getConnect() throws UnknownHostException {
-//        client = new PreBuiltTransportClient(Settings.EMPTY).addTransportAddresses(
-//                new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT));
-//        logger.info("连接信息:" + client.toString());
-//    }
 
     /**
      * 关闭连接
@@ -87,13 +86,12 @@ public class ElasticSearchUtil {
         /**
          * 此处暂时写成固定的index和type，以后会根据业务修改
          */
-        IndexResponse response = getIstance().prepareIndex("province", "data").setSource(jsonStr, XContentType.JSON).get();
+        IndexResponse response = getIstance().prepareIndex(elasticsearchutil.esconfig.getIndexname(), elasticsearchutil.esconfig.getTypename())
+                .setSource(jsonStr).setContentType(XContentType.JSON).get();
         logger.info("json索引名称:" + response.getIndex() + "\njson类型:" + response.getType()
-                + "\njson文档ID:" + response.getId() + "\n当前实例json状态:" + response.status());
+                + "\njson文档ID:" + response.getId() + "\n当前实例json状态:");
         return response.getId();
     }
-
-
 
 
     public static void main(String[] args) {
